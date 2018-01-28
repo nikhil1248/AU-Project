@@ -1,0 +1,210 @@
+<div role="main">
+	<div class="container" ng-controller="CalendarCtrl">
+		<div class="row">
+			<div class="col-3 float-left">
+				<div id="modalButton">
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#newEventModal">Book a Slot</button>
+				</div>
+
+				<!-- Booking Modal -->
+				<div class="modal fade" id="newEventModal" tabindex="-1"
+					role="dialog" aria-labelledby="newEventModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="newEventModalLabel">Quick Book</h5>
+								<span ng-bind="errormsg"></span>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label for="recipient-name" class="form-control-label">Meeting
+											Title:</label> <input type="text" class="form-control"
+											id="recipient-name" ng-model="eventTitle">
+									</div>
+									<div class="form-group">
+										<select class="custom-select" id="roomId">
+											<option selected>Select Room</option>
+											<option ng-repeat="room in rooms" value="{{room.id}}">Room
+												{{room.id}}</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="start" class="form-control-label">Start
+											Date and Time:</label> <input type="datetime-local"
+											class="form-control" id="start" ng-model="start">
+									</div>
+									<div class="form-group">
+										<label for="end" class="form-control-label">End Date
+											and Time:</label> <input type="datetime-local" class="form-control"
+											id="end" ng-model="end">
+									</div>
+									<div class="form-group">
+										<label for="description" class="form-control-label">Description:</label>
+										<textarea class="form-control" id="description"
+											ng-model="description"></textarea>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary close"
+									data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary"
+									ng-click="addEvent()">Book Room</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="accordion" role="tablist" aria-multiselectable="true">
+					<div class="card">
+						<div class="card-header" role="tab" id="headingOne">
+							<h5 class="mb-0">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapseOne" aria-expanded="true"
+									aria-controls="collapseOne"> Rooms </a>
+								<button ng-if="user.isAdmin" class="btn btn-primary"
+									id="addRoom" ng-click="addRoom()">Add Room</button>
+							</h5>
+						</div>
+
+						<div id="collapseOne" class="collapse show" role="tabpanel"
+							aria-labelledby="headingOne">
+							<div class="card-block">
+								<ul class="list-unstyled">
+									<li ng-repeat="room in rooms" class="card">Room No :
+										{{room.id}}, Availability : {{room.isAvaialable}}
+										<button ng-if="user.isAdmin" type="button"
+											class="btn btn-primary" ng-click="changeAvaialabilty(room)">
+											Toggle Availability</button>
+
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="card" ng-if="user.isAdmin">
+						<div class="card-header" role="tab" id="headingTwo">
+							<h5 class="mb-0">
+								<a class="collapsed" data-toggle="collapse"
+									data-parent="#accordion" href="#collapseTwo"
+									aria-expanded="false" aria-controls="collapseTwo"> Special
+									Requests </a>
+							</h5>
+						</div>
+						<div id="collapseTwo" class="collapse" role="tabpanel"
+							aria-labelledby="headingTwo">
+							<div class="card-block">
+								<ul class="list-unstyled">
+									<!-- implement showRequest method -->
+									<li ng-repeat="request in specialRequests" class="card"
+										ng-click="showRequest(request)">Title: {{request.title}},
+										UserId: {{request.userId}}</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="card" ng-if="!user.isAdmin">
+						<div class="card-header" role="tab" id="headingThree">
+							<h5 class="mb-0">
+								<a class="collapsed" data-toggle="collapse"
+									data-parent="#accordion" href="#collapseThree"
+									aria-expanded="false" aria-controls="collapseThree"> My
+									Pending Requests </a>
+							</h5>
+						</div>
+						<div id="collapseThree" class="collapse" role="tabpanel"
+							aria-labelledby="headingThree">
+							<div class="card-block">
+								<ul class="list-unstyled">
+									<li ng-repeat="request in specialRequests" class="card"
+										ng-click="showRequest(request)">Title: {{request.title}}
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Modal to Show Requests -->
+
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#myModal" style="display: none" id="modalToggle">
+				</button>
+
+				<!-- Modal -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Request
+									Details</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>Title : {{showReq.title}}</p>
+								<p>Description : {{showReq.description}}</p>
+								<p>Room No : {{showReq.roomId}}</p>
+								<p>Start : {{showReq.start}}</p>
+								<p>End : {{showReq.end}}</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal" ng-click="showRequest(null)">Close</button>
+								<button type="button" class="btn btn-primary"
+									ng-if="user.isAdmin" ng-click="rejectRequest()">Reject
+									Request</button>
+								<button type="button" class="btn btn-primary"
+									ng-if="user.isAdmin" ng-click="acceptRequest()">Accept
+									Request</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-9 float-left">
+				<div class="row">
+					<div class="alert-success calAlert "
+						ng-show="alertMessage != undefined && alertMessage != ''">
+						<h4>{{alertMessage}}</h4>
+					</div>
+				</div>
+				<div class="row">
+					<tabset> <tab select="renderCalendar('myCalendar1');">
+					<tab-heading>
+					<h3>Schedule</h3>
+					</tab-heading>
+
+					<div class="btn-toolbar">
+						<div class="pull-right ViewChanger">
+							<button class="btn btn-info"
+								ng-click="changeView('agendaDay', 'myCalendar1')">Day</button>
+							<button class="btn btn-info"
+								ng-click="changeView('agendaWeek', 'myCalendar1')">Week</button>
+							<button class="btn btn-info"
+								ng-click="changeView('month', 'myCalendar1')">Month</button>
+							<button class="btn btn-info"
+								ng-click="changeView('listWeek', 'myCalendar1')">All
+								Bookings</button>
+						</div>
+					</div>
+					<div class="calendar" ng-model="eventSources"
+						calendar="myCalendar1" ui-calendar="uiConfig.calendar"></div>
+					</tab> </tabset>
+				</div>
+			</div>
+		</div>
+		</section>
+	</div>
+</div>
