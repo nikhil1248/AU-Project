@@ -1,0 +1,6 @@
+projectKey=com.accolite:BoardroomBooking
+serverUrl=http://localhost:9000
+serverVersion=6.7.1.35068
+dashboardUrl=http://localhost:9000/dashboard/index/com.accolite:BoardroomBooking
+ceTaskId=AWE_9IOH53UHFw6TC6UY
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWE_9IOH53UHFw6TC6UY
