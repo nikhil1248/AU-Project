@@ -24,9 +24,9 @@ public class BookingDao {
 	}
 
 	public void addBooking(Booking booking) {
-		String sql = "INSERT INTO bookings (bookingID, title, bookingRoomID, startDate, endDate, description, bookingUserID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO bookings (bookingID, title, bookingRoomID, startDate, endDate, description, locationID, bookingUserID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, booking.getId(), booking.getTitle(), booking.getRoomId(), booking.getStart(),
-				booking.getEnd(), booking.getDescription(), booking.getLocationID(), booking.getUserId());
+				booking.getEnd(), booking.getDescription(), booking.getLocationId(), booking.getUserId());
 	}
 
 	public List<Booking> getAllBookings(final int locationId) {
@@ -46,10 +46,10 @@ class BookingMapper implements RowMapper<Booking> {
 		booking.setId(rs.getInt("bookingID"));
 		booking.setTitle(rs.getString("title"));
 		booking.setRoomId(rs.getInt("bookingRoomID"));
-		booking.setStart(rs.getDate("startDate"));
-		booking.setEnd(rs.getDate("endDate"));
+		booking.setStart(rs.getTimestamp("startDate"));
+		booking.setEnd(rs.getTimestamp("endDate"));
 		booking.setDescription(rs.getString("description"));
-		booking.setLocationID(rs.getInt("locationID"));
+		booking.setLocationId(rs.getInt("locationID"));
 		booking.setUserId(rs.getInt("bookingUserID"));
 		return booking;
 	}

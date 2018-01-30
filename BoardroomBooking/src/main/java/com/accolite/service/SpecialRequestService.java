@@ -14,7 +14,7 @@ public class SpecialRequestService {
 	@Autowired
 	SpecialRequestDao specialRequestDao;
 
-	public List<SpecialRequest> getAllRequests(int locationId) {
-		return specialRequestDao.getAllRequests(locationId);
+	public List<SpecialRequest> getAllRequests() {
+		return specialRequestDao.getAllRequests();
 	}
 }

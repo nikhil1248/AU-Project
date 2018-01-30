@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BoardroomBooking (1) (30 Jan, 2018 1:27:59 AM)</a> &gt; <a href="../../index.html" class="el_group">BoardroomBooking</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.accolite.service</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package com.accolite.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.accolite.dao.BookingDao;
+import com.accolite.dao.UserDao;
+import com.accolite.model.Booking;
+import com.accolite.model.User;
+
+@Service
+<span class="fc" id="L12">public class UserService {</span>
+
+	@Autowired
+	public UserDao userDao;
+	
+	@Autowired
+	public BookingDao bookingDao;
+
+	public User userLogin(User user) {
+<span class="fc" id="L21">		return userDao.validateDetails(user);</span>
+	}
+
+	public void userRegister(User user) {
+<span class="fc" id="L25">		userDao.registerUser(user);</span>
+<span class="fc" id="L26">	}</span>
+
+	public void userBookingRequest(Booking booking) {
+<span class="nc" id="L29">		bookingDao.addBooking(booking);</span>
+<span class="nc" id="L30">	}</span>
+	
+	public void userSpecialRequest(Booking booking) {
+<span class="nc" id="L33">		userDao.addSpecialRequest(booking);</span>
+<span class="nc" id="L34">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>BoardroomBooking (1) (30 Jan, 2018 1:27:59 AM)</div></body></html>

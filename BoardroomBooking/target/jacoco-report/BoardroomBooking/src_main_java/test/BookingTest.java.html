@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>BookingTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BoardroomBooking (1) (30 Jan, 2018 1:27:59 AM)</a> &gt; <a href="../../index.html" class="el_group">BoardroomBooking</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">test</a> &gt; <span class="el_source">BookingTest.java</span></div><h1>BookingTest.java</h1><pre class="source lang-java linenums">package test;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
+import com.accolite.dao.BookingDao;
+import com.accolite.model.Booking;
+import com.accolite.service.BookingService;
+
+<span class="fc" id="L20">public class BookingTest {</span>
+
+	@Mock
+	private BookingDao daoMock;
+
+	@InjectMocks
+	private BookingService bookingService;
+
+	@Before
+	public void setUp() {
+<span class="fc" id="L30">		MockitoAnnotations.initMocks(this);</span>
+<span class="fc" id="L31">	}</span>
+
+	@Test
+	public void testGetBookings() {
+<span class="fc" id="L35">		List&lt;Booking&gt; all = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L36">		Booking booking = new Booking();</span>
+<span class="fc" id="L37">		booking.setId(1);</span>
+<span class="fc" id="L38">		booking.setTitle(&quot;booking1&quot;);</span>
+<span class="fc" id="L39">		booking.setDescription(&quot;sample booking&quot;);</span>
+<span class="fc" id="L40">		booking.setLocationId(1);</span>
+<span class="fc" id="L41">		booking.setRoomId(1);</span>
+<span class="fc" id="L42">		booking.setStart(new Date());</span>
+<span class="fc" id="L43">		booking.setEnd(new Date());</span>
+
+<span class="fc" id="L45">		all.add(booking);</span>
+
+<span class="fc" id="L47">		Mockito.when(daoMock.getAllBookings(1)).thenReturn(all);</span>
+
+<span class="fc" id="L49">		List&lt;Booking&gt; result1 = bookingService.getAllBookings(1);</span>
+<span class="fc" id="L50">		Mockito.verify(daoMock).getAllBookings(1);</span>
+<span class="fc" id="L51">		assertEquals(all, result1);</span>
+
+<span class="fc" id="L53">		List&lt;Booking&gt; result2 = daoMock.getAllBookings(1);</span>
+<span class="fc" id="L54">		assertEquals(all, result2);</span>
+
+<span class="fc" id="L56">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>BoardroomBooking (1) (30 Jan, 2018 1:27:59 AM)</div></body></html>

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.accolite.dao.AdminDao;
 import com.accolite.dao.BookingDao;
+import com.accolite.dao.RoomDao;
 import com.accolite.dao.SpecialRequestDao;
 import com.accolite.model.Room;
 import com.accolite.model.SpecialRequest;
@@ -15,15 +16,22 @@ public class AdminService {
 	@Autowired
 	private AdminDao adminDao;
 	
+//	@Autowired
 	private BookingDao bookingDao;
+	
+//	@Autowired
 	private SpecialRequestDao specialRequestDao;
+	
+	@Autowired
+	private RoomDao roomDao;
 
 	public void addNewRoom(Room room) {
 		adminDao.addRoom(room);
 	}
 
 	public void changeAvailability(int roomId) {
-		adminDao.toggleAvailability(roomId);
+		Room room = roomDao.getRoomByID(roomId);
+		roomDao.setAvailability(room, !room.isAvailable());
 	}
 
 	public void respondSpecialRequest(SpecialRequest specialRequest, boolean response) {

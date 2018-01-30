@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="BoardroomBooking">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../Software/jee-oxygen/eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="Maven Dependencies.libraryclasspath">
+        <pathelement location="C:/Users/nikhil/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/springframework/spring-webmvc/4.3.13.RELEASE/spring-webmvc-4.3.13.RELEASE.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/springframework/spring-aop/4.3.13.RELEASE/spring-aop-4.3.13.RELEASE.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/springframework/spring-beans/4.3.13.RELEASE/spring-beans-4.3.13.RELEASE.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/springframework/spring-context/4.3.13.RELEASE/spring-context-4.3.13.RELEASE.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/springframework/spring-core/4.3.13.RELEASE/spring-core-4.3.13.RELEASE.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/springframework/spring-expression/4.3.13.RELEASE/spring-expression-4.3.13.RELEASE.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/springframework/spring-web/4.3.13.RELEASE/spring-web-4.3.13.RELEASE.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/log4j/log4j/1.2.15/log4j-1.2.15.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/javax/mail/mail/1.4/mail-1.4.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/springframework/spring-jdbc/4.2.5.RELEASE/spring-jdbc-4.2.5.RELEASE.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/springframework/spring-tx/4.2.5.RELEASE/spring-tx-4.2.5.RELEASE.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/webjars/jquery/3.2.1/jquery-3.2.1.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/webjars/angularjs/1.6.4/angularjs-1.6.4.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/webjars/angular-ui-bootstrap/2.2.0/angular-ui-bootstrap-2.2.0.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/webjars/bootstrap/4.0.0-alpha.6-1/bootstrap-4.0.0-alpha.6-1.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.9.2/jackson-databind-2.9.2.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.9.2/jackson-core-2.9.2.jar"/>
+        <pathelement location="C:/Users/nikhil/.m2/repository/org/mockito/mockito-all/1.9.5/mockito-all-1.9.5.jar"/>
+    </path>
+    <path id="Apache Tomcat v8.5 [Apache Tomcat v8.5].libraryclasspath">
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/annotations-api.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/catalina-ant.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/catalina-ha.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/catalina-tribes.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/catalina.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/ecj-4.6.3.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/el-api.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/jasper-el.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/jasper.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/jaspic-api.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/jsp-api.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/servlet-api.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/tomcat-api.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/tomcat-jni.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/tomcat-util.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../Software/apache-tomcat-8.5.24-windows-x64/apache-tomcat-8.5.24/lib/websocket-api.jar"/>
+    </path>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="C:/Users/nikhil/.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="C:/Users/nikhil/.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="BoardroomBooking.classpath">
+        <pathelement location="target/classes"/>
+        <pathelement location="target/test-classes"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+        <path refid="Apache Tomcat v8.5 [Apache Tomcat v8.5].libraryclasspath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.AdminTest.addRoomTest.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.AdminTest.changeAvailabilityTest.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.AdminTest.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.BoardroomBooking (1).classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.BookingTest.testGetBookings.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.BookingModelTest.testGetID.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.BookingModelTest.testGetTitle.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.BookingModelTest.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.BookingModelTest.testGetStart.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.UserModelTest.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.LocationModelTest.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.RoomModelTest.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.SpecialRequestModelTest.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.test.models.classpath">
+        <path refid="BoardroomBooking.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="target/classes"/>
+        <mkdir dir="target/test-classes"/>
+        <copy includeemptydirs="false" todir="target/classes">
+            <fileset dir="src/main/java">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="target/classes">
+            <fileset dir="src/main/resources">
+                <exclude name="**/*.java"/>
+                <exclude name="**"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="target/test-classes">
+            <fileset dir="src/test/java">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="target/classes"/>
+        <delete dir="target/test-classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src/main/java"/>
+            <src path="src/main/resources"/>
+            <exclude name="**"/>
+            <classpath refid="BoardroomBooking.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/test-classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src/test/java"/>
+            <classpath refid="BoardroomBooking.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="AdminTest.addRoomTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.AdminTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.AdminTest.addRoomTest.classpath"/>
+        </junit>
+    </target>
+    <target name="AdminTest.changeAvailabilityTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.AdminTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.AdminTest.changeAvailabilityTest.classpath"/>
+        </junit>
+    </target>
+    <target name="AdminTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.AdminTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.AdminTest.classpath"/>
+        </junit>
+    </target>
+    <target name="BoardroomBooking (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.AdminTest" todir="${junit.output.dir}"/>
+            <test name="test.BookingTest" todir="${junit.output.dir}"/>
+            <test name="test.RoomTest" todir="${junit.output.dir}"/>
+            <test name="test.SpecialRequestTest" todir="${junit.output.dir}"/>
+            <test name="test.UserTest" todir="${junit.output.dir}"/>
+            <test name="test.models.BookingModelTest" todir="${junit.output.dir}"/>
+            <test name="test.models.LocationModelTest" todir="${junit.output.dir}"/>
+            <test name="test.models.RoomModelTest" todir="${junit.output.dir}"/>
+            <test name="test.models.SpecialRequestModelTest" todir="${junit.output.dir}"/>
+            <test name="test.models.UserModelTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.BoardroomBooking (1).classpath"/>
+        </junit>
+    </target>
+    <target name="BookingTest.testGetBookings">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.BookingTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.BookingTest.testGetBookings.classpath"/>
+        </junit>
+    </target>
+    <target name="BookingModelTest.testGetID">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.models.BookingModelTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.BookingModelTest.testGetID.classpath"/>
+        </junit>
+    </target>
+    <target name="BookingModelTest.testGetTitle">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.models.BookingModelTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.BookingModelTest.testGetTitle.classpath"/>
+        </junit>
+    </target>
+    <target name="BookingModelTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.models.BookingModelTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.BookingModelTest.classpath"/>
+        </junit>
+    </target>
+    <target name="BookingModelTest.testGetStart">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.models.BookingModelTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.BookingModelTest.testGetStart.classpath"/>
+        </junit>
+    </target>
+    <target name="UserModelTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.models.UserModelTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.UserModelTest.classpath"/>
+        </junit>
+    </target>
+    <target name="LocationModelTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.models.LocationModelTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.LocationModelTest.classpath"/>
+        </junit>
+    </target>
+    <target name="RoomModelTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.models.RoomModelTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.RoomModelTest.classpath"/>
+        </junit>
+    </target>
+    <target name="SpecialRequestModelTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.models.SpecialRequestModelTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.SpecialRequestModelTest.classpath"/>
+        </junit>
+    </target>
+    <target name="test.models">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.models.BookingModelTest" todir="${junit.output.dir}"/>
+            <test name="test.models.LocationModelTest" todir="${junit.output.dir}"/>
+            <test name="test.models.RoomModelTest" todir="${junit.output.dir}"/>
+            <test name="test.models.SpecialRequestModelTest" todir="${junit.output.dir}"/>
+            <test name="test.models.UserModelTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.test.models.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>

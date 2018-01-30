@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>RoomDao.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BoardroomBooking (1) (30 Jan, 2018 1:27:59 AM)</a> &gt; <a href="../../index.html" class="el_group">BoardroomBooking</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.accolite.dao</a> &gt; <span class="el_source">RoomDao.java</span></div><h1>RoomDao.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">package com.accolite.dao;</span>
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import com.accolite.model.Room;
+
+@Repository
+<span class="nc" id="L16">public class RoomDao {</span>
+
+	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+<span class="nc" id="L22">		this.jdbcTemplate = jdbcTemplate;</span>
+<span class="nc" id="L23">	}</span>
+
+	public List&lt;Room&gt; getAllRooms(final int locationId) {
+<span class="nc" id="L26">		String sql = &quot;select * from rooms WHERE roomLocID = ?&quot;;</span>
+<span class="nc" id="L27">		return jdbcTemplate.query(sql, new PreparedStatementSetter() {</span>
+			public void setValues(java.sql.PreparedStatement ps) throws SQLException {
+<span class="nc" id="L29">				ps.setInt(1, locationId);</span>
+<span class="nc" id="L30">			}</span>
+<span class="nc" id="L31">		}, new RoomMapper());</span>
+	}
+
+	public void setAvailability(Room room, boolean availability) {
+<span class="nc" id="L35">		String sql = &quot;UPDATE rooms SET isAvailable = ? WHERE roomID = ?&quot;;</span>
+<span class="nc" id="L36">		jdbcTemplate.update(sql, availability, room.getRoomId());</span>
+<span class="nc" id="L37">	}</span>
+
+	public Room getRoomByID(final int roomID) {
+<span class="nc" id="L40">		String sql = &quot;select * from rooms where roomID = ?&quot;;</span>
+
+<span class="nc" id="L42">		List&lt;Room&gt; rooms = jdbcTemplate.query(sql, new PreparedStatementSetter() {</span>
+			public void setValues(java.sql.PreparedStatement ps) throws SQLException {
+<span class="nc" id="L44">				ps.setInt(1, roomID);</span>
+<span class="nc" id="L45">			}</span>
+<span class="nc" id="L46">		}, new RoomMapper());</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">		return rooms.isEmpty() ? null : rooms.get(0);</span>
+	}
+
+}
+
+<span class="nc" id="L52">class RoomMapper implements RowMapper&lt;Room&gt; {</span>
+	public Room mapRow(ResultSet rs, int arg1) throws SQLException {
+<span class="nc" id="L54">		Room room = new Room();</span>
+<span class="nc" id="L55">		room.setRoomId(rs.getInt(&quot;roomID&quot;));</span>
+<span class="nc" id="L56">		room.setAvailable(rs.getBoolean(&quot;isAvailable&quot;));</span>
+<span class="nc" id="L57">		room.setLocationId(rs.getInt(&quot;roomLocID&quot;));</span>
+<span class="nc" id="L58">		return room;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>BoardroomBooking (1) (30 Jan, 2018 1:27:59 AM)</div></body></html>

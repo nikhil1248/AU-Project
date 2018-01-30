@@ -31,12 +31,12 @@ public class UserDao {
 
 	public User validateDetails(final User user) {
 
-		String sql = "SELECT * FROM user WHERE username = ? AND userPassword = ?";
+		String sql = "SELECT * FROM user WHERE userID = ? AND userPassword = ?";
 
 		List<User> users = jdbcTemplate.query(sql, new PreparedStatementSetter() {
 
 			public void setValues(java.sql.PreparedStatement ps) throws SQLException {
-				ps.setString(1, user.getUsername());
+				ps.setInt(1, user.getUserId());
 				ps.setString(2, user.getPassword());
 			}
 		}, new UserMapper());

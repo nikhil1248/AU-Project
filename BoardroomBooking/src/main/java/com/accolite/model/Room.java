@@ -3,14 +3,14 @@ package com.accolite.model;
 public class Room {
 	private int roomId;
 	private int locationId;
-	private boolean isAvailable;
+	private boolean available;
 
 	public boolean isAvailable() {
-		return isAvailable;
+		return available;
 	}
 
-	public void setAvailable(boolean isAvailable) {
-		this.isAvailable = isAvailable;
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
 	public int getRoomId() {

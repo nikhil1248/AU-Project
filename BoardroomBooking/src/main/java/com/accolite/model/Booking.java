@@ -1,6 +1,6 @@
 package com.accolite.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Booking {
 	private int id;
@@ -9,7 +9,7 @@ public class Booking {
 	private Date start;
 	private Date end;
 	private String description;
-	private int locationID;
+	private int locationId;
 	private int userId;
 	
 	public int getId() {
@@ -30,17 +30,17 @@ public class Booking {
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
-	public Date getStart() {
-		return start;
-	}
 	public void setStart(Date start) {
 		this.start = start;
 	}
-	public Date getEnd() {
-		return end;
-	}
 	public void setEnd(Date end) {
 		this.end = end;
+	}
+	public Date getStart() {
+		return start;
+	}
+	public Date getEnd() {
+		return end;
 	}
 	public String getDescription() {
 		return description;
@@ -48,11 +48,11 @@ public class Booking {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getLocationID() {
-		return locationID;
+	public int getLocationId() {
+		return locationId;
 	}
-	public void setLocationID(int locationID) {
-		this.locationID = locationID;
+	public void setLocationId(int locationID) {
+		this.locationId = locationID;
 	}
 	public int getUserId() {
 		return userId;

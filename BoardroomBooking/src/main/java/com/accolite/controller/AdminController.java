@@ -1,18 +1,17 @@
 package com.accolite.controller;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.accolite.model.Room;
 import com.accolite.model.SpecialRequest;
 import com.accolite.service.AdminService;
 
-@Controller
+@RestController
 @RequestMapping("/api/admin")
 public class AdminController {
 
@@ -25,9 +24,9 @@ public class AdminController {
 	}
 
 	// Change the past bookings as well - Less Priority
-	@RequestMapping(value = "/changeavail", method = RequestMethod.GET)
-	public void changeAvailablity(@PathParam(value = "id")  int roomId) {
-		adminService.changeAvailability(roomId);
+	@RequestMapping(value = "/changeavail/{id}", method = RequestMethod.GET)
+	public void changeAvailablity(@PathVariable int id) {
+		adminService.changeAvailability(id);
 	}
 
 	@RequestMapping(value = "/acceptrequest", method = RequestMethod.POST)

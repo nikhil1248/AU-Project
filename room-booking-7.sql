@@ -35,9 +35,9 @@ CREATE TABLE bookings (
 	bookingID int(10) NOT NULL,
 	title varchar(50) NOT NULL,
 	bookingRoomID int(10) NOT NULL,
-	startDate timestamp NOT NULL,
-    endDate timestamp NOT NULL,
-	description varchar(500) NOT NULL,
+	startDate timestamp,
+    endDate timestamp,
+	description varchar(500),
 	locationID int NOT NULL,
     bookingUserID int(10) NOT NULL,
 	PRIMARY KEY(bookingID),
@@ -65,9 +65,10 @@ VALUES
 INSERT INTO rooms
 ( roomID, isAvailable, roomLocID )
 VALUES
+(1, true, 1),
 ( 2, true, 2);
 
 INSERT INTO bookings
 ( bookingID, title, bookingRoomID, startDate, endDate, description, locationID, bookingUserID)
 VALUES
-( 1 , "New Booking", 1, "Sun, 28 Jan 2018 04:32:04 GMT", "Sun, 28 Jan 2018 04:47:04 GMT", "A small meeting", 1, 1);
+( 1 , "New Booking", 2, "Sun, 28 Jan 2018 04:32:04 GMT", "Sun, 28 Jan 2018 04:47:04 GMT", "A small meeting", 1, 1);

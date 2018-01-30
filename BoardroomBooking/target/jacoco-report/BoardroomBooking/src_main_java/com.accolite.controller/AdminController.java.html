@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AdminController.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BoardroomBooking (1) (30 Jan, 2018 1:27:59 AM)</a> &gt; <a href="../../index.html" class="el_group">BoardroomBooking</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.accolite.controller</a> &gt; <span class="el_source">AdminController.java</span></div><h1>AdminController.java</h1><pre class="source lang-java linenums">package com.accolite.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.accolite.model.Room;
+import com.accolite.model.SpecialRequest;
+import com.accolite.service.AdminService;
+
+@RestController
+@RequestMapping(&quot;/api/admin&quot;)
+<span class="nc" id="L16">public class AdminController {</span>
+
+	@Autowired
+	public AdminService adminService;
+
+	@RequestMapping(value = &quot;/addroom&quot;, method = RequestMethod.POST)
+	public void addNewRoom(@RequestBody Room room) {
+<span class="nc" id="L23">		adminService.addNewRoom(room);</span>
+<span class="nc" id="L24">	}</span>
+
+	// Change the past bookings as well - Less Priority
+	@RequestMapping(value = &quot;/changeavail/{id}&quot;, method = RequestMethod.GET)
+	public void changeAvailablity(@PathVariable int id) {
+<span class="nc" id="L29">		adminService.changeAvailability(id);</span>
+<span class="nc" id="L30">	}</span>
+
+	@RequestMapping(value = &quot;/acceptrequest&quot;, method = RequestMethod.POST)
+	public void acceptSpecialRequest(@RequestBody SpecialRequest specialRequest) {
+<span class="nc" id="L34">		adminService.respondSpecialRequest(specialRequest, true);</span>
+<span class="nc" id="L35">	}</span>
+	
+	@RequestMapping(value = &quot;/rejectrequest&quot;, method = RequestMethod.POST)
+	public void rejectSpecialRequest(@RequestBody SpecialRequest specialRequest) {
+<span class="nc" id="L39">		adminService.respondSpecialRequest(specialRequest, false);</span>
+<span class="nc" id="L40">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>BoardroomBooking (1) (30 Jan, 2018 1:27:59 AM)</div></body></html>

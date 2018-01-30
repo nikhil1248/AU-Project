@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AdminTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">BoardroomBooking (1) (30 Jan, 2018 1:27:59 AM)</a> &gt; <a href="../../index.html" class="el_group">BoardroomBooking</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">test</a> &gt; <span class="el_source">AdminTest.java</span></div><h1>AdminTest.java</h1><pre class="source lang-java linenums">package test;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
+import com.accolite.dao.AdminDao;
+import com.accolite.dao.BookingDao;
+import com.accolite.dao.RoomDao;
+import com.accolite.dao.SpecialRequestDao;
+import com.accolite.model.Room;
+import com.accolite.model.SpecialRequest;
+import com.accolite.service.AdminService;
+
+<span class="fc" id="L24">public class AdminTest {</span>
+
+	@Mock
+	private AdminDao daoMock;
+
+	@Mock
+	private RoomDao roomDaoMock;
+
+	@Mock
+	private SpecialRequestDao specialRequestDaoMock;
+
+	@Mock
+	private BookingDao bookingDaoMock;
+
+	@InjectMocks
+	private AdminService adminService;
+
+	@Before
+	public void setUp() {
+<span class="fc" id="L43">		MockitoAnnotations.initMocks(this);</span>
+<span class="fc" id="L44">	}</span>
+
+	@Test
+	public void addRoomTest() {
+<span class="fc" id="L48">		Room room = new Room();</span>
+<span class="fc" id="L49">		room.setAvailable(true);</span>
+<span class="fc" id="L50">		room.setLocationId(1);</span>
+<span class="fc" id="L51">		room.setRoomId(2);</span>
+
+<span class="fc" id="L53">		List&lt;Room&gt; all = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L54">		all.add(room);</span>
+
+<span class="fc" id="L56">		Mockito.when(roomDaoMock.getAllRooms(1)).thenReturn(all);</span>
+
+<span class="fc" id="L58">		adminService.addNewRoom(room);</span>
+
+<span class="fc" id="L60">		List&lt;Room&gt; result = roomDaoMock.getAllRooms(1);</span>
+<span class="fc" id="L61">		Mockito.verify(daoMock).addRoom(room);</span>
+
+<span class="fc" id="L63">		assertEquals(all, result);</span>
+<span class="fc" id="L64">	}</span>
+
+	@Test
+	public void respondRequestTest() {
+<span class="fc" id="L68">		SpecialRequest specialRequest = new SpecialRequest();</span>
+<span class="fc" id="L69">		specialRequest.setId(1);</span>
+<span class="fc" id="L70">		specialRequest.setTitle(&quot;SpecialRequest1&quot;);</span>
+<span class="fc" id="L71">		specialRequest.setDescription(&quot;sample SpecialRequest&quot;);</span>
+<span class="fc" id="L72">		specialRequest.setLocationId(1);</span>
+<span class="fc" id="L73">		specialRequest.setRoomId(1);</span>
+<span class="fc" id="L74">		specialRequest.setStart(new Date());</span>
+<span class="fc" id="L75">		specialRequest.setEnd(new Date());</span>
+<span class="fc" id="L76">		specialRequest.setStatus(false);</span>
+<span class="fc" id="L77">		List&lt;SpecialRequest&gt; all = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L78">		all.add(specialRequest);</span>
+
+<span class="fc" id="L80">		adminService.respondSpecialRequest(specialRequest, true);</span>
+
+<span class="fc" id="L82">		Mockito.verify(bookingDaoMock).addBooking(specialRequest);</span>
+
+<span class="fc" id="L84">		assertEquals(true, specialRequest.getStatus());</span>
+<span class="fc" id="L85">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>BoardroomBooking (1) (30 Jan, 2018 1:27:59 AM)</div></body></html>

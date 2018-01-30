@@ -2,17 +2,17 @@ package com.accolite.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.accolite.model.Booking;
 import com.accolite.model.User;
 import com.accolite.service.UserService;
 
-@Controller
+@RestController
 @RequestMapping("/api/user")
 public class UserController {
 
@@ -23,9 +23,9 @@ public class UserController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody User login(@RequestBody User user) {
-
 		User temp = userService.userLogin(user);
 		if (null != temp) {
+			
 			log.info("User " + temp.getUsername() + " logged in, Is Admin : " + temp.isAdmin());
 			return temp;
 		} else {

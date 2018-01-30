@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -22,13 +21,9 @@ public class SpecialRequestDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public List<SpecialRequest> getAllRequests(final int locationId) {
-		String sql = "SELECT * FROM specialRequests WHERE locID = ?";
-		return jdbcTemplate.query(sql, new PreparedStatementSetter() {
-			public void setValues(java.sql.PreparedStatement ps) throws SQLException {
-				ps.setInt(1, locationId);
-			}
-		}, new SpecialRequestMapper());
+	public List<SpecialRequest> getAllRequests() {
+		String sql = "SELECT * FROM specialRequests";
+		return jdbcTemplate.query(sql, new SpecialRequestMapper());
 	}
 
 	public void deleteSpecialRequest(SpecialRequest specialRequest) {

@@ -16,14 +16,13 @@ public class AdminDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public void addRoom(Room room) {
-		String sql = "INSERT INTO rooms (roomID, isAvailable, roomLocID) VALUES (?,?,?)";
-		jdbcTemplate.update(sql, room.getRoomId(), room.isAvailable(), room.getLocationId());
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
 	}
 
-	public void toggleAvailability(int roomId) {
-		String sql = "UPDATE rooms SET isAvailable = !isAvailable WHERE roomID = ?";
-		jdbcTemplate.update(sql, roomId);
+	public int addRoom(Room room) {
+		String sql = "INSERT INTO rooms (roomID, isAvailable, roomLocID) VALUES (?,?,?)";
+		return jdbcTemplate.update(sql, room.getRoomId(), room.isAvailable(), room.getLocationId());
 	}
 
 }

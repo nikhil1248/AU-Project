@@ -31,8 +31,8 @@
 									<div class="form-group">
 										<select class="custom-select" id="roomId">
 											<option selected>Select Room</option>
-											<option ng-repeat="room in rooms" value="{{room.id}}">Room
-												{{room.id}}</option>
+											<option ng-repeat="room in rooms" value="{{room.roomId}}">Room
+												{{room.roomId}}</option>
 										</select>
 									</div>
 									<div class="form-group">
@@ -67,9 +67,9 @@
 						<div class="card-header" role="tab" id="headingOne">
 							<h5 class="mb-0">
 								<a data-toggle="collapse" data-parent="#accordion"
-									href="#collapseOne" aria-expanded="true"
+									href="" aria-expanded="true"
 									aria-controls="collapseOne"> Rooms </a>
-								<button ng-if="user.isAdmin" class="btn btn-primary"
+								<button ng-if="user.admin" class="btn btn-primary"
 									id="addRoom" ng-click="addRoom()">Add Room</button>
 							</h5>
 						</div>
@@ -79,9 +79,9 @@
 							<div class="card-block">
 								<ul class="list-unstyled">
 									<li ng-repeat="room in rooms" class="card">Room No :
-										{{room.id}}, Availability : {{room.isAvaialable}}
-										<button ng-if="user.isAdmin" type="button"
-											class="btn btn-primary" ng-click="changeAvaialabilty(room)">
+										{{room.roomId}}, Availability : {{room.available}}
+										<button ng-if="user.admin" type="button"
+											class="btn btn-primary" ng-click="changeAvailability(room)">
 											Toggle Availability</button>
 
 									</li>
@@ -89,12 +89,12 @@
 							</div>
 						</div>
 					</div>
-					<div class="card" ng-if="user.isAdmin">
+					<div class="card" ng-if="user.admin">
 						<div class="card-header" role="tab" id="headingTwo">
 							<h5 class="mb-0">
 								<a class="collapsed" data-toggle="collapse"
-									data-parent="#accordion" href="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo"> Special
+									data-parent="#accordion" href=""
+									aria-expanded="true" aria-controls="collapseTwo"> Special
 									Requests </a>
 							</h5>
 						</div>
@@ -110,12 +110,12 @@
 							</div>
 						</div>
 					</div>
-					<div class="card" ng-if="!user.isAdmin">
+					<div class="card" ng-if="!user.admin">
 						<div class="card-header" role="tab" id="headingThree">
 							<h5 class="mb-0">
 								<a class="collapsed" data-toggle="collapse"
-									data-parent="#accordion" href="#collapseThree"
-									aria-expanded="false" aria-controls="collapseThree"> My
+									data-parent="#accordion" href=""
+									aria-expanded="true" aria-controls="collapseThree"> My
 									Pending Requests </a>
 							</h5>
 						</div>
